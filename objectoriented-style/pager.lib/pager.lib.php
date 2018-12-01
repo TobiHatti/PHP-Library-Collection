@@ -10,6 +10,39 @@ class Pager
     private $customURL;
     private $offset;
 
+    /*
+    ################################
+
+    CSS-Style for Pager
+
+    .pager span
+    {
+        color: colorDisabled;
+    }
+    .pager a span
+    {
+        color: colorDefault;
+    }
+
+    ################################
+
+    SASS-Style for Pager
+
+    .pager{
+        span{
+            color: colorDisabled;
+        }
+
+        a{
+            span{
+                color: colorDefault;
+            }
+        }
+    }
+
+    ################################
+    */
+
 ##########################################################################################
 
     public function __construct($_pagerSize)
@@ -167,8 +200,8 @@ class Pager
 
         $retval .= '<div class="pager">';
 
-        $retval .= ($back) ? '<span style="color: #696969;" title="Zur ersten Seite">&#9664;&#9664;</span>' : '<span title="Zur ersten Seite"><a href="'.$URLEx.'1">&#9664;&#9664;</a></span>' ;
-        $retval .= ($back) ? '<span style="color: #696969;" title="Zur vorherigen Seite">&#9664;</span>' : '<span title="Zur vorherigen Seite"><a href="'.$URLEx.($currentPage-1).'">&#9664;</a></span>' ;
+        $retval .= ($back) ? '<span title="Zur ersten Seite">&#10074;&#9664;</span>' : '<a href="'.$URLEx.'1"><span title="Zur ersten Seite">&#10074;&#9664;</span></a>' ;
+        $retval .= ($back) ? '<span title="Zur vorherigen Seite">&#9664;</span>' : '<a href="'.$URLEx.($currentPage-1).'"><span title="Zur vorherigen Seite">&#9664;</span></a>' ;
 
         if($pages > 7)
         {
@@ -235,32 +268,32 @@ class Pager
             // Show ellipsis and first pages left
             if($showEllipsisLeft)
             {
-                if($currentPage - 5 > 1) $retval .= '<span title="Zu Seite 1" style="font-size: 14pt;"><a href="'.$URLEx.'1">1</a></span><span title="Zu Seite 2" style="font-size: 14pt;"><a href="'.$URLEx.'2">2</a></span>';
-                $retval .= '<span style="color: #696969; font-size: 16pt;">...</span>';
+                if($currentPage - 5 > 1) $retval .= '<a href="'.$URLEx.'1"><span title="Zu Seite 1">1</span></a><a href="'.$URLEx.'2"><span title="Zu Seite 2">2</span></a>';
+                $retval .= '<span>...</span>';
             }
 
             for($i=$startPage;$i<=$endPage;$i++)
             {
-                $retval .= ($currentPage == $i) ? '<span title="Zu Seite '.$i.'" style="color: #696969; font-size: 16pt;">'.$i.'</span>' : '<span title="Zu Seite '.$i.'" style="font-size: 14pt;"><a href="'.$URLEx.$i.'">'.$i.'</a></span>' ;
+                $retval .= ($currentPage == $i) ? '<span title="Zu Seite '.$i.'">'.$i.'</span>' : '<a href="'.$URLEx.$i.'"><span title="Zu Seite '.$i.'">'.$i.'</span></a>' ;
             }
 
             // Show ellipsis and last pages right
             if($showEllipsisRight)
             {
-                $retval .= '<span style="color: #696969; font-size: 16pt;">...</span>';
-                if($currentPage + 5 < $pages) $retval .= '<span title="Zu Seite '.($pages-1).'" style="font-size: 14pt;"><a href="'.$URLEx.($pages-1).'">'.($pages-1).'</a></span><span title="Zu Seite '.$pages.'" style="font-size: 14pt;"><a href="'.$URLEx.$pages.'">'.$pages.'</a></span>';
+                $retval .= '<span>...</span>';
+                if($currentPage + 5 < $pages) $retval .= '<a href="'.$URLEx.($pages-1).'"><span title="Zu Seite '.($pages-1).'">'.($pages-1).'</span></a><a href="'.$URLEx.$pages.'"><span title="Zu Seite '.$pages.'">'.$pages.'</span></a>';
             }
         }
         else
         {
             for($i=1;$i<=$pages;$i++)
             {
-                $retval .= ($currentPage == $i) ? '<span title="Zu Seite '.$i.'" style="color: #696969; font-size: 16pt;">'.$i.'</span>' : '<span title="Zu Seite '.$i.'" style="font-size: 14pt;"><a href="'.$URLEx.$i.'">'.$i.'</a></span>' ;
+                $retval .= ($currentPage == $i) ? '<span title="Zu Seite '.$i.'">'.$i.'</span>' : '<a href="'.$URLEx.$i.'"><span title="Zu Seite '.$i.'">'.$i.'</span></a>' ;
             }
         }
 
-        $retval .= ($next) ? '<span title="Zur n&auml;chsten Seite" style="color: #696969;">&#9654;</span>' : '<span title="Zur n&auml;chsten Seite"><a href="'.$URLEx.($currentPage+1).'">&#9654;</a></span>' ;
-        $retval .= ($next) ? '<span  title="Zur letzten Seite" style="color: #696969;">&#9654;&#9654;</span>' : '<span title="Zur letzten Seite"><a href="'.$URLEx.$pages.'">&#9654;&#9654;</a></span>' ;
+        $retval .= ($next) ? '<span title="Zur n&auml;chsten Seite">&#9654;</span>' : '<a href="'.$URLEx.($currentPage+1).'"><span title="Zur n&auml;chsten Seite">&#9654;</span></a>' ;
+        $retval .= ($next) ? '<span title="Zur letzten Seite">&#9654;&#10074;</span>' : '<a href="'.$URLEx.$pages.'"><span title="Zur letzten Seite">&#9654;&#10074;</span></a>' ;
 
         $retval .= '</div>';
 
@@ -286,15 +319,15 @@ class Pager
 
         $retval = '<div class="pager">';
 
-        $retval .= '<span title="Zur ersten Seite"><a href="'.$links[0].'">&#9664;&#9664;</a></span>';
+        $retval .= '<a href="'.$links[0].'"><span title="Zur ersten Seite">&#9664;&#9664;</span></a>';
 
         $i=0;
         foreach($links as $link)
         {
-            $retval .= '<span title="Zu Seite '.($i + 1).'" style="color: #696969; font-size: 16pt;"><a href="'.$links[$i].'">'.($i++ + 1).'</a></span>';
+            $retval .= '<a href="'.$links[$i].'"><span title="Zu Seite '.($i + 1).'" style="color: #696969; font-size: 16pt;">'.($i++ + 1).'</span></a>';
         }
 
-        $retval .= '<span title="Zur letzten Seite"><a href="'.$links[$amt-1].'">&#9654;&#9654;</a></span>';
+        $retval .= '<a href="'.$links[$amt-1].'"><span title="Zur letzten Seite">&#9654;&#9654;</span></a>';
 
         $retval .= '</div>';
 
