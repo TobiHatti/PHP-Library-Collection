@@ -4,26 +4,28 @@ class Pager
 {
 ##########################################################################################
 
-	private static $sqlConnectionLink;
+    private static $sqlConnectionLink;
 
-	private $pagerSize;
-	private $customURL;
+    private $pagerSize;
+    private $customURL;
+    private $offset;
 
 ##########################################################################################
 
-	public function __construct($_pagerSize)
-	{
-		$this->SetPagerSize($_pagerSize);
+    public function __construct($_pagerSize)
+    {
+        $this->SetPagerSize($_pagerSize);
         $this->SetCustomURL("");
-	}
-	
-	public static function init()
-	{
-		require("pager.lib.config.php");
-		
-		self::$sqlConnectionLink = mysqli_connect($pagerConfigDatabaseHost,$pagerConfigDatabaseUser,$pagerConfigDatabasePass,$pagerConfigDatabaseName) OR die("<br><br><b>Error in pager.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
-	}
-	
+        $this->offset = $this->SetOffset();
+    }
+
+    public static function init()
+    {
+        require("pager.lib.config.php");
+
+        self::$sqlConnectionLink = mysqli_connect($pagerConfigDatabaseHost,$pagerConfigDatabaseUser,$pagerConfigDatabasePass,$pagerConfigDatabaseName) OR die("<br><br><b>Error in pager.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
+    }
+
 ##########################################################################################
 
     private static function GetParamTypeList($paramTypeList,$paramAmt)
@@ -112,22 +114,29 @@ class Pager
 
 ##########################################################################################
 
-	public function SetPagerSize($size)
-	{
-		if($size > 0) $this->pagerSize = $size;
-		else throw new Exception("<br><br><b>Error in pager.lib.php :</b> Invalid Pager-Size (Code 2)<br><br>");
-	}
+    public function SetPagerSize($size)
+    {
+        if($size > 0) $this->pagerSize = $size;
+        else throw new Exception("<br><br><b>Error in pager.lib.php :</b> Invalid Pager-Size (Code 2)<br><br>");
+    }
 
     public function SetCustomURL($url)
-	{
-		$this->customURL = $url;
-	}
+    {
+        $this->customURL = $url;
+    }
+
+    public function SetOffset()
+    {
+        $currentPage = (isset($_GET['page']) ? $_GET['page'] : 1 );
+
+        return ($currentPage-1) * $this->pagerSize;
+    }
 
 ##########################################################################################
 
-	public function SQLAuto($sqlStatement,$parameterTypes="", &...$sqlParameters)
-	{
-	    $retval = '';
+    public function SQLAuto($sqlStatement,$parameterTypes="", &...$sqlParameters)
+    {
+        $retval = '';
 
         $thisPage = ($this->customURL == "") ? basename($_SERVER["REQUEST_URI"], '.php') : $this->customURL;
 
@@ -151,7 +160,7 @@ class Pager
             $entryCounts -= $this->pagerSize;
         }
 
-        $URLEX = self::ThisPage("!page=","+page=");
+        $URLEx = self::ThisPage("!page=","+page=");
 
         $back = ($currentPage == 1) ? true : false;
         $next = ($currentPage >= $pages) ? true : false;
@@ -255,11 +264,23 @@ class Pager
 
         $retval .= '</div>';
 
-        return $retval;
-	}
+        $this->offset = $this->pagerSize * $currentPage;
 
-	public function Manual()
-	{
+        return $retval;
+    }
+
+    public function GetOffset()
+    {
+        return $this->offset;
+    }
+
+    public function GetPagerSize()
+    {
+        return $this->pagerSize;
+    }
+
+    public function Manual()
+    {
         $amt = func_num_args();
         $links = func_get_args();
 
@@ -278,7 +299,7 @@ class Pager
         $retval .= '</div>';
 
         return $retval;
-	}
+    }
 
 ##########################################################################################
 }
