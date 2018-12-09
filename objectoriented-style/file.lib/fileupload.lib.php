@@ -1,6 +1,6 @@
 <?php
 
-class File
+class FileUploader
 {
 ##########################################################################################
 
@@ -18,7 +18,7 @@ class File
 
     public function __construct()
     {
-        require("file.lib.config.php");
+        require("fileupload.lib.config.php");
 
         $this->fileUploadDirectory = $fileConfigDefaultUploadDirectory;
         $this->fileCustomName = "";
@@ -29,14 +29,9 @@ class File
 
     public static function init()
     {
-        require("file.lib.config.php");
+        require("fileupload.lib.config.php");
 
-        self::$sqlConnectionLink = mysqli_connect($sqlConfigDatabaseHost,$sqlConfigDatabaseUser,$sqlConfigDatabasePass,$sqlConfigDatabaseName) OR die("<br><br><b>Error in file.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
-    }
-
-    public function Close()
-    {
-        $this->$sqlConnectionLink->close();
+        self::$sqlConnectionLink = mysqli_connect($fileConfigDatabaseHost,$fileConfigDatabaseUser,$fileConfigDatabasePass,$fileConfigDatabaseName) OR die("<br><br><b>Error in file.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
     }
 
 ##########################################################################################
@@ -103,7 +98,7 @@ class File
 
     public function SetFileTypes(...$fileTypeExtensions)
     {
-        $this->fileValidFormats = ...$fileTypeExtensions;
+        $this->fileValidFormats = $fileTypeExtensions;
     }
 
     public function SetMaxFileSize($maximumFileSize)
@@ -116,7 +111,7 @@ class File
     public function Upload()
     {
         // Create directory if not existing
-        if(!is_dir($path)) mkdir($path, 0750);
+        if(!is_dir($this->fileUploadDirectory)) mkdir($this->fileUploadDirectory, 0750);
 
         // Upload Files to Server
         $count=0;
@@ -162,7 +157,7 @@ class File
                     }
                     if($this->fileSQLEntry != "")
                     {
-                        $fileSQLStatement = $this->fileSQLEntry
+                        $fileSQLStatement = $this->fileSQLEntry;
 
                         $fileSQLStatement = str_replace("@FILENAME",$name,$fileSQLStatement);
                         $fileSQLStatement = str_replace("@FILEEXTENSION",pathinfo($this->fileUploadDirectory.$name, PATHINFO_EXTENSION),$fileSQLStatement);
@@ -172,10 +167,8 @@ class File
                 }
             }
         }
-
-        $this->Close();
     }
 }
-File::init();
+FileUploader::init();
 
 ?>
