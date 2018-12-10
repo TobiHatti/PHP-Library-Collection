@@ -4,19 +4,19 @@
 // Connect to MySQL Database
 //=================================
 // Database-Hostname
-$fileConfigDatabaseHost = "localhost";
+$uploadConfigDatabaseHost = "localhost";
 
 // Database-Username
-$fileConfigDatabaseUser = "root";
+$uploadConfigDatabaseUser = "root";
 
 // Database-Password
-$fileConfigDatabasePass = "";
+$uploadConfigDatabasePass = "";
 
 // Database-Name
-$fileConfigDatabaseName = "sample-db";
+$uploadConfigDatabaseName = "krokodeal_new";
 
 
 // Default upload path
-$fileConfigDefaultUploadDirectory = "upload/";
+$uploadConfigDefaultUploadDirectory = "upload/";
 
 ?>
