@@ -3,6 +3,9 @@ A collection of usefull PHP-Libraries for web-development<br />
 For detailed description see the README.md in each libraries folder.
 A brief summary of all classes and methods is given below.
 
+Every library is available for procedural programming style 
+and object oriented programming style (object oriented is recommended)
+
 __Current libraries:__
 - MySQL.lib
 - Pager.lib
@@ -45,7 +48,7 @@ Saves the database to a `.sql` file<br />
 Regularly saves the database in a specified period<br />
 `void MySQL::PeriodicSave([string $backupPeriod = "d"])`
 
-For more details see the README.md in the library folder
+For more details see the `README.md` in the library folder
 
 ## Pager.lib
 A small PHP-class that adds a variety of pagers for SQL and Non-SQL lists
@@ -78,7 +81,7 @@ Get the amount of shown elements per page<br />
 Get the current page of the pager<br />
 `int $pager->GetOffset()`
 
-For more details see the README.md in the library folder
+For more details see the `README.md` in the library folder
 
 ## Page.lib
 A lightweight PHP-class which adds several usefull Methods to PHP
@@ -90,7 +93,7 @@ Returns the pages URL and modifies it with given parameters<br />
 Redirects to the provided URL<br />
 `void Page::Redirect(string $redirectURL [, int $redirectDelay])`
 
-For more details see the README.md in the library folder
+For more details see the `README.md` in the library folder
 
 ## Upload.lib
 A simple and reliable PHP-class for Uploading files to the server
@@ -140,7 +143,7 @@ Uploads the file to the server<br />
 `void $uploader->Upload()`
 
 
-For more details see the README.md in the library folder
+For more details see the `README.md` in the library folder
 
 ## Settings.lib
 A small PHP-class to save and load Settings stored in a MySQL-Database
