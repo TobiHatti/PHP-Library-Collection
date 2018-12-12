@@ -232,24 +232,24 @@ class FileUploader
 
                             switch(exif_imagetype($fileName))
                             {
-                                case IMAGETYPE_GIF: $oldImage = imagecreatefromgif($fileName) break;
-                                case IMAGETYPE_JPEG: $oldImage = imagecreatefromjpeg($fileName) break;
-                                case IMAGETYPE_PNG: $oldImage = imagecreatefrompng($fileName) break;
-                                case IMAGETYPE_BMP:  $oldImage = imagecreatefrombmp($fileName) break;
-                                case IMAGETYPE_WEBP: $oldImage = imagecreatefromwebp($fileName) break;
-                                default throw new Exception("Imagetype not supported!");
+                                case IMAGETYPE_GIF: $oldImage = imagecreatefromgif($fileName); break;
+                                case IMAGETYPE_JPEG: $oldImage = imagecreatefromjpeg($fileName); break;
+                                case IMAGETYPE_PNG: $oldImage = imagecreatefrompng($fileName); break;
+                                case IMAGETYPE_BMP:  $oldImage = imagecreatefrombmp($fileName); break;
+                                case IMAGETYPE_WEBP: $oldImage = imagecreatefromwebp($fileName); break;
+                                default: throw new Exception("Imagetype not supported!");
                             }
 
                             imagecopyresized($newImage, $oldImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
                             switch(exif_imagetype($fileName))
                             {
-                                case IMAGETYPE_GIF: imagegif($newImage,$fileName) break;
-                                case IMAGETYPE_JPEG: imagejpeg($newImage,$fileName) break;
-                                case IMAGETYPE_PNG: imagepng($newImage,$fileName)break;
-                                case IMAGETYPE_BMP:  imagebmp($newImage,$fileName) break;
-                                case IMAGETYPE_WEBP: imagewebp($newImage,$fileName) break;
-                                default throw new Exception("Imagetype not supported!");
+                                case IMAGETYPE_GIF: imagegif($newImage,$fileName); break;
+                                case IMAGETYPE_JPEG: imagejpeg($newImage,$fileName); break;
+                                case IMAGETYPE_PNG: imagepng($newImage,$fileName); break;
+                                case IMAGETYPE_BMP:  imagebmp($newImage,$fileName); break;
+                                case IMAGETYPE_WEBP: imagewebp($newImage,$fileName); break;
+                                default: throw new Exception("Imagetype not supported!");
                             }
                         }
 
@@ -272,24 +272,24 @@ class FileUploader
 
                             switch(exif_imagetype($fileName))
                             {
-                                case IMAGETYPE_GIF: $oldImage = imagecreatefromgif($fileName) break;
-                                case IMAGETYPE_JPEG: $oldImage = imagecreatefromjpeg($fileName) break;
-                                case IMAGETYPE_PNG: $oldImage = imagecreatefrompng($fileName) break;
-                                case IMAGETYPE_BMP:  $oldImage = imagecreatefrombmp($fileName) break;
-                                case IMAGETYPE_WEBP: $oldImage = imagecreatefromwebp($fileName) break;
-                                default throw new Exception("Imagetype not supported!");
+                                case IMAGETYPE_GIF: $oldImage = imagecreatefromgif($fileName); break;
+                                case IMAGETYPE_JPEG: $oldImage = imagecreatefromjpeg($fileName); break;
+                                case IMAGETYPE_PNG: $oldImage = imagecreatefrompng($fileName); break;
+                                case IMAGETYPE_BMP:  $oldImage = imagecreatefrombmp($fileName); break;
+                                case IMAGETYPE_WEBP: $oldImage = imagecreatefromwebp($fileName); break;
+                                default: throw new Exception("Imagetype not supported!");
                             }
 
                             imagecopyresized($newImage, $oldImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
                             switch(exif_imagetype($fileName))
                             {
-                                case IMAGETYPE_GIF: imagegif($newImage,$fileName) break;
-                                case IMAGETYPE_JPEG: imagejpeg($newImage,$fileName) break;
-                                case IMAGETYPE_PNG: imagepng($newImage,$fileName)break;
-                                case IMAGETYPE_BMP:  imagebmp($newImage,$fileName) break;
-                                case IMAGETYPE_WEBP: imagewebp($newImage,$fileName) break;
-                                default throw new Exception("Imagetype not supported!");
+                                case IMAGETYPE_GIF: imagegif($newImage,$fileName); break;
+                                case IMAGETYPE_JPEG: imagejpeg($newImage,$fileName); break;
+                                case IMAGETYPE_PNG: imagepng($newImage,$fileName); break;
+                                case IMAGETYPE_BMP:  imagebmp($newImage,$fileName); break;
+                                case IMAGETYPE_WEBP: imagewebp($newImage,$fileName); break;
+                                default: throw new Exception("Imagetype not supported!");
                             }
                         }
 
@@ -305,24 +305,24 @@ class FileUploader
 
                             switch(exif_imagetype($fileName))
                             {
-                                case IMAGETYPE_GIF: $oldImage = imagecreatefromgif($fileName) break;
-                                case IMAGETYPE_JPEG: $oldImage = imagecreatefromjpeg($fileName) break;
-                                case IMAGETYPE_PNG: $oldImage = imagecreatefrompng($fileName) break;
-                                case IMAGETYPE_BMP:  $oldImage = imagecreatefrombmp($fileName) break;
-                                case IMAGETYPE_WEBP: $oldImage = imagecreatefromwebp($fileName) break;
-                                default throw new Exception("Imagetype not supported!");
+                                case IMAGETYPE_GIF: $oldImage = imagecreatefromgif($fileName); break;
+                                case IMAGETYPE_JPEG: $oldImage = imagecreatefromjpeg($fileName); break;
+                                case IMAGETYPE_PNG: $oldImage = imagecreatefrompng($fileName); break;
+                                case IMAGETYPE_BMP:  $oldImage = imagecreatefrombmp($fileName); break;
+                                case IMAGETYPE_WEBP: $oldImage = imagecreatefromwebp($fileName); break;
+                                default: throw new Exception("Imagetype not supported!");
                             }
 
                             imagecopyresized($newImage, $oldImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
                             switch(exif_imagetype($fileName))
                             {
-                                case IMAGETYPE_GIF: imagegif($newImage,$fileName) break;
-                                case IMAGETYPE_JPEG: imagejpeg($newImage,$fileName) break;
-                                case IMAGETYPE_PNG: imagepng($newImage,$fileName)break;
-                                case IMAGETYPE_BMP:  imagebmp($newImage,$fileName) break;
-                                case IMAGETYPE_WEBP: imagewebp($newImage,$fileName) break;
-                                default throw new Exception("Imagetype not supported!");
+                                case IMAGETYPE_GIF: imagegif($newImage,$fileName); break;
+                                case IMAGETYPE_JPEG: imagejpeg($newImage,$fileName); break;
+                                case IMAGETYPE_PNG: imagepng($newImage,$fileName); break;
+                                case IMAGETYPE_BMP:  imagebmp($newImage,$fileName); break;
+                                case IMAGETYPE_WEBP: imagewebp($newImage,$fileName); break;
+                                default: throw new Exception("Imagetype not supported!");
                             }
                         }
 
