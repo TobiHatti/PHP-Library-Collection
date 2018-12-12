@@ -35,9 +35,10 @@ void $uploader->SetPath(string $targetUploadPath)
 ```php
 // PHP Example
 $uploader->SetPath("uploads/userImages/");	
+$uploader->SetPath("/uploads/userImages");
 $uploader->SetPath("uploads/userImages");
 $uploader->SetPath("/uploads/userImages/");
-// All 3 variants result in the same path.
+// All 4 variants result in the same path.
 ```
 
 ### SetName
@@ -72,7 +73,7 @@ void $uploader->SetSQLEntry(string $sqlStatement)
 // PHP Example
 $uploader->SetSQLEntry("UPDATE users SET userImage = '@FILENAME' WHERE id = '$id'");
 ```
-- __SetFileTypes__<br />
+### SetFileTypes
 Define allowed filetypes. Default: all filetypes<br />
 Enter each allowed filetype as a single parameter.<br />
 Entered filetypes are case-insensitive.<br />
