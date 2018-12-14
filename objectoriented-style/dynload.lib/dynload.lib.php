@@ -3,12 +3,16 @@
 class DynLoad
 {
     private static $sqlConnectionLink;
+    private static $libDirectory;
 
 //########################################################################################
 
     public function init()
     {
         require("dynload.lib.config.php");
+
+        self::$libDirectory = ltrim(str_replace('\\','',str_replace(getcwd(),'',__DIR__)),'/');
+
         self::$sqlConnectionLink = mysqli_connect($dynloadConfigDatabaseHost,$dynloadConfigDatabaseUser,$dynloadConfigDatabasePass,$dynloadConfigDatabaseName) OR die("<br><br><b>Error in dynload.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
     }
 
@@ -16,10 +20,12 @@ class DynLoad
 
     public static function Link()
     {
-        echo '
-            <script src="dynload.lib/dynload-source/dynload.lib.js"></script>
-            <iframe hidden src="dynload.lib/dynload-source/dynloadFrame.php" id="dynloadFrame"></iframe>
-        ';
+        return '<script src="/'.self::$libDirectory.'/dynload-source/dynload.lib.js"></script>';
+    }
+
+    public static function Start()
+    {
+        return '<iframe hidden src="/'.self::$libDirectory.'/dynload-source/dynloadFrame.php" id="dynloadFrame"></iframe>';
     }
 
     public static function Scalar($sqlStatement)
@@ -56,8 +62,9 @@ class DynLoad
         return $rowArray;
     }
 
-    public static function Exist($sqlStatement,$parameterTypes="", &...$sqlParameters)
+    public static function Exist($sqlStatement)
     {
+        echo $sqlStatement;
         $stmt = self::$sqlConnectionLink->prepare($sqlStatement);
         $stmt->execute();
         $stmt->store_result();

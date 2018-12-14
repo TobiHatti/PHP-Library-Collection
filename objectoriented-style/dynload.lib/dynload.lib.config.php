@@ -13,6 +13,6 @@ $dynloadConfigDatabaseUser = "root";
 $dynloadConfigDatabasePass = "";
 
 // Database-Name
-$dynloadConfigDatabaseName = "sample-db";
+$dynloadConfigDatabaseName = "krokodeal_new";
 
 ?>

@@ -1,10 +1,12 @@
+var scripts = document.getElementsByTagName("script");
+var libraryBaseDirectory = scripts[scripts.length-1].src.replace('/dynload.lib.js','');
+
 function DynLoadScalar()
 {
     // Retrieving data
     var e = arguments[0];
     var outputElementID = arguments[1];
     var sqlQuery = arguments[2];
-    var libraryDirectory = "dynload.lib/";
 
     var elementValue;
 
@@ -19,7 +21,7 @@ function DynLoadScalar()
             break;
     }
 
-    sqlQuery = sqlQuery.replace("??",elementValue);
+    sqlQuery = sqlQuery.replace("??", "'" + elementValue + "'");
 
     // Prepare SQL-Statement
     for(var i = 3; i < arguments.length; i++) sqlQuery = sqlQuery.replace("?", "'" + arguments[i] + "'");
@@ -27,7 +29,7 @@ function DynLoadScalar()
     // Setup iframe
     var iframe = document.getElementById("dynloadFrame").contentWindow;
     iframe.document.getElementById("loadCompleted").value = 0;
-    document.getElementById("dynloadFrame").src = libraryDirectory + "source/dynloadFrame.php?action=scalar&query=" + sqlQuery;
+    document.getElementById("dynloadFrame").src = libraryBaseDirectory + "/dynloadFrame.php?action=scalar&query=" + sqlQuery;
 
     // Wait until data from iframe is recieved
     $("#dynloadFrame").on("load", function () {
@@ -41,7 +43,6 @@ function DynLoadCount()
     var e = arguments[0];
     var outputElementID = arguments[1];
     var sqlQuery = arguments[2];
-    var libraryDirectory = "dynload.lib/";
 
     var elementValue;
 
@@ -56,7 +57,7 @@ function DynLoadCount()
             break;
     }
 
-    sqlQuery = sqlQuery.replace("??",elementValue);
+    sqlQuery = sqlQuery.replace("??", "'" + elementValue + "'");
 
     // Prepare SQL-Statement
     for(var i = 3; i < arguments.length; i++) sqlQuery = sqlQuery.replace("?", "'" + arguments[i] + "'");
@@ -64,7 +65,7 @@ function DynLoadCount()
     // Setup iframe
     var iframe = document.getElementById("dynloadFrame").contentWindow;
     iframe.document.getElementById("loadCompleted").value = 0;
-    document.getElementById("dynloadFrame").src = libraryDirectory + "source/dynloadFrame.php?action=count&query=" + sqlQuery;
+    document.getElementById("dynloadFrame").src = libraryBaseDirectory + "/dynloadFrame.php?action=count&query=" + sqlQuery;
 
     // Wait until data from iframe is recieved
     $("#dynloadFrame").on("load", function () {
@@ -78,7 +79,6 @@ function DynLoadExist()
     var e = arguments[0];
     var outputElementID = arguments[1];
     var sqlQuery = arguments[2];
-    var libraryDirectory = "dynload.lib/";
 
     var elementValue;
 
@@ -93,7 +93,7 @@ function DynLoadExist()
             break;
     }
 
-    sqlQuery = sqlQuery.replace("??",elementValue);
+    sqlQuery = sqlQuery.replace("??", "'" + elementValue + "'");
 
     // Prepare SQL-Statement
     for(var i = 3; i < arguments.length; i++) sqlQuery = sqlQuery.replace("?", "'" + arguments[i] + "'");
@@ -101,7 +101,7 @@ function DynLoadExist()
     // Setup iframe
     var iframe = document.getElementById("dynloadFrame").contentWindow;
     iframe.document.getElementById("loadCompleted").value = 0;
-    document.getElementById("dynloadFrame").src = libraryDirectory + "source/dynloadFrame.php?action=exist&query=" + sqlQuery;
+    document.getElementById("dynloadFrame").src = libraryBaseDirectory + "/dynloadFrame.php?action=exist&query=" + sqlQuery;
 
     // Wait until data from iframe is recieved
     $("#dynloadFrame").on("load", function () {
@@ -115,7 +115,6 @@ function DynLoadList()
     var e = arguments[0];
     var outputElementID = arguments[1];
     var sqlQuery = arguments[2];
-    var libraryDirectory = "dynload.lib/";
 
     var elementValue;
 
@@ -130,7 +129,7 @@ function DynLoadList()
             break;
     }
 
-    sqlQuery = sqlQuery.replace("??",elementValue);
+    sqlQuery = sqlQuery.replace("??", "'" + elementValue + "'");
 
     // Prepare SQL-Statement
     for(var i = 3; i < arguments.length; i++) sqlQuery = sqlQuery.replace("?", "'" + arguments[i] + "'");
@@ -138,15 +137,12 @@ function DynLoadList()
     // Setup iframe
     var iframe = document.getElementById("dynloadFrame").contentWindow;
     iframe.document.getElementById("loadCompleted").value = 0;
-    document.getElementById("dynloadFrame").src = libraryDirectory + "source/dynloadFrame.php?action=list&query=" + sqlQuery;
+    document.getElementById("dynloadFrame").src = libraryBaseDirectory + "/dynloadFrame.php?action=list&query=" + sqlQuery;
 
     // Wait until data from iframe is recieved
     $("#dynloadFrame").on("load", function () {
-
         // Clearing old List
-        var select = document.getElementById(outputElementID);
-        var length = select.options.length;
-        for (i = 0; i < length; i++) select.options[i] = null;
+        document.getElementById(outputElementID).innerHTML = "";
 
         // Filling new List
         var sqlResult = iframe.document.getElementById("dynloadOutput").value;
