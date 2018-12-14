@@ -17,8 +17,8 @@ class DynLoad
     public static function Link()
     {
         echo '
-            <script src="dynload.lib/source/dynload.lib.js"></script>
-            <iframe hidden src="dynload.lib/source/dynloadFrame.php" id="dynloadFrame"></iframe>
+            <script src="dynload.lib/dynload-source/dynload.lib.js"></script>
+            <iframe hidden src="dynload.lib/dynload-source/dynloadFrame.php" id="dynloadFrame"></iframe>
         ';
     }
 

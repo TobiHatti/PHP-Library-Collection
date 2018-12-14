@@ -14,3 +14,5 @@ $dynloadConfigDatabasePass = "";
 
 // Database-Name
 $dynloadConfigDatabaseName = "sample-db";
+
+?>
