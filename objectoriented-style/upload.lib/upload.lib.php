@@ -207,8 +207,6 @@ class FileUploader
 
                     if(move_uploaded_file($tempFileName, $fileName))
                     {
-
-
                         if($this->fileAspectRatio != "")
                         {
                             $ratioParts = explode(':',$this->fileAspectRatio);
@@ -229,6 +227,11 @@ class FileUploader
 
                             // Create new image
                             $newImage = imagecreatetruecolor($newWidth, $newHeight);
+
+                            imagealphablending($newImage, false);
+                            imagesavealpha($newImage,true);
+                            $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
+                            imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
 
                             switch(exif_imagetype($fileName))
                             {
@@ -257,18 +260,19 @@ class FileUploader
                         {
                             list($width, $height, $type, $attr) = getimagesize($fileName);
 
-
-
-
                             if($width > $height) $scalingFactor = $this->fileTargetResolutionX / $width;
                             if($width <= $height) $scalingFactor = $this->fileTargetResolutionY / $height;
-
 
                             $newWidth = $width * $scalingFactor;
                             $newHeight = $height * $scalingFactor;
 
                             // Create new image
                             $newImage = imagecreatetruecolor($newWidth, $newHeight);
+
+                            imagealphablending($newImage, false);
+                            imagesavealpha($newImage,true);
+                            $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
+                            imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
 
                             switch(exif_imagetype($fileName))
                             {
@@ -302,6 +306,11 @@ class FileUploader
 
                             // Create new image
                             $newImage = imagecreatetruecolor($newWidth, $newHeight);
+
+                            imagealphablending($newImage, false);
+                            imagesavealpha($newImage,true);
+                            $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
+                            imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
 
                             switch(exif_imagetype($fileName))
                             {
