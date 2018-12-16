@@ -1,5 +1,14 @@
 <?php
 
+abstract class FileUploaderOutput
+{
+    const FilenameOnly = '@FUO_FILENAMEONLY';
+    const FilenamePlusExtension = '@FUO_FILENAMEPLUSEXTENSION';
+    const ExtensionOnly = '@FUO_EXTENSIONONLY';
+    const FilepathPlusFilename = '@FUO_FILEPATHPLUSNAME';
+    const FilepathOnly = '@FUO_FILEPATHONLY';
+}
+
 class FileUploader
 {
 ##########################################################################################
@@ -31,6 +40,7 @@ class FileUploader
         $this->fileAspectRatio = "";
         $this->fileTargetResolutionX = "";
         $this->fileScaleFactor = "";
+        $this->fileOverride = false;
         $this->fileMaxSize = 99999999;
 
     }
@@ -342,8 +352,11 @@ class FileUploader
                     {
                         $fileSQLStatement = $this->fileSQLEntry;
 
-                        $fileSQLStatement = str_replace("@FILENAME",$fileName,$fileSQLStatement);
-                        $fileSQLStatement = str_replace("@FILEEXTENSION",pathinfo($this->fileUploadDirectory.$fileName, PATHINFO_EXTENSION),$fileSQLStatement);
+                        $fileSQLStatement = str_replace(FileUploaderOutput::FilenameOnly,str_replace(pathinfo($fileName, PATHINFO_EXTENSION).'.','',$fileName),$fileSQLStatement);
+                        $fileSQLStatement = str_replace(FileUploaderOutput::FilenamePlusExtension,$fileName,$fileSQLStatement);
+                        $fileSQLStatement = str_replace(FileUploaderOutput::ExtensionOnly,pathinfo($fileName, PATHINFO_EXTENSION),$fileSQLStatement);
+                        $fileSQLStatement = str_replace(FileUploaderOutput::FilepathPlusFilename,$this->fileUploadDirectory.$fileName,$fileSQLStatement);
+                        $fileSQLStatement = str_replace(FileUploaderOutput::FilepathOnly,$this->fileUploadDirectory,$fileSQLStatement);
 
                         self::MySQLNonQuery($fileSQLStatement);
                     }
