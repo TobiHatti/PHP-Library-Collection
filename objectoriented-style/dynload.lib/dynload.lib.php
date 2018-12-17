@@ -23,9 +23,9 @@ class DynLoad
         return '<script src="/'.self::$libDirectory.'/dynload-source/dynload.lib.js"></script>';
     }
 
-    public static function Start()
+    public static function Start($frameIDCtr)
     {
-        return '<iframe hidden src="/'.self::$libDirectory.'/dynload-source/dynloadFrame.php" id="dynloadFrame"></iframe>';
+        return '<iframe hidden src="/'.self::$libDirectory.'/dynload-source/dynloadFrame.php" id="dynloadFrame'.$frameIDCtr.'"></iframe>';
     }
 
     public static function Scalar($sqlStatement)
