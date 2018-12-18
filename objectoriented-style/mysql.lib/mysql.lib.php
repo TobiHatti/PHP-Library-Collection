@@ -5,7 +5,6 @@ class MySQL
 ##########################################################################################
 
     private static $sqlConnectionLink;
-    private static $mysqli;
 
     private static $databaseHost;
     private static $databaseUser;
@@ -28,13 +27,6 @@ class MySQL
         self::$databaseBackupPath = $sqlConfigBackupPath;
 
         self::$sqlConnectionLink = mysqli_connect($sqlConfigDatabaseHost,$sqlConfigDatabaseUser,$sqlConfigDatabasePass,$sqlConfigDatabaseName) OR die("<br><br><b>Error in mysql.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
-
-        self::$mysqli = new mysqli($sqlConfigDatabaseHost,$sqlConfigDatabaseUser,$sqlConfigDatabasePass,$sqlConfigDatabaseName) OR die("<br><br><b>Error in mysql.lib.php :</b> Could not connect to Database (Code 2)<br><br>");
-    }
-
-    public static function Close()
-    {
-        self::$mysqli->close();
     }
 
 ##########################################################################################
@@ -189,40 +181,6 @@ class MySQL
         $stmt->close();
 
         return $count!=0;
-    }
-
-##########################################################################################
-
-    public static function Fetch($table,$getColumn,$whereColumn,$whereColumnValue)
-    {
-        $sqlStatement = "SELECT $getColumn FROM $table WHERE $whereColumn LIKE '$whereColumnValue'";
-
-        $result = self::$mysqli->query($sqlStatement);
-        $row = $result->fetch_assoc();
-
-
-
-        return $row[$getColumn];
-    }
-
-    public static function FetchCount($table,$whereColumn,$whereColumnValue)
-    {
-        $sqlStatement = "SELECT * FROM $table WHERE $whereColumn LIKE '$whereColumnValue'";
-
-        $result = self::$mysqli->query($sqlStatement);
-        $count = $result->num_rows;
-
-        return $count;
-    }
-
-    public static function FetchRow($table,$whereColumn,$whereColumnValue)
-    {
-        $sqlStatement = "SELECT * FROM $table WHERE $whereColumn LIKE '$whereColumnValue'";
-
-        $result = self::$mysqli->query($sqlStatement);
-        $row = $result->fetch_assoc();
-
-        return $row;
     }
 
 ##########################################################################################
