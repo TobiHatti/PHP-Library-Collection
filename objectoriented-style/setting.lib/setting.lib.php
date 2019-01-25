@@ -8,14 +8,10 @@ class Setting
 
 ##########################################################################################
 
-    public static function init()
+    public static function SetSQLLink($link)
     {
-        require("setting.lib.config.php");
-
-        self::$sqlConnectionLink = mysqli_connect($settingConfigDatabaseHost,$settingConfigDatabaseUser,$settingConfigDatabasePass,$settingConfigDatabaseName) OR die("<br><br><b>Error in setting.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
+        self::$sqlConnectionLink = $link;
     }
-
-##########################################################################################
 
     public static function Get($setting)
     {
@@ -72,6 +68,5 @@ class Setting
 
 ##########################################################################################
 }
-Setting::init();
 
 ?>

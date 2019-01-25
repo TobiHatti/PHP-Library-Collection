@@ -52,14 +52,12 @@ class Pager
         $this->offset = $this->SetOffset();
     }
 
-    public static function init()
-    {
-        require("pager.lib.config.php");
-
-        self::$sqlConnectionLink = mysqli_connect($pagerConfigDatabaseHost,$pagerConfigDatabaseUser,$pagerConfigDatabasePass,$pagerConfigDatabaseName) OR die("<br><br><b>Error in pager.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
-    }
-
 ##########################################################################################
+
+    public static function SetSQLLink($link)
+    {
+        self::$sqlConnectionLink = $link;
+    }
 
     private static function GetParamTypeList($paramTypeList,$paramAmt)
     {
@@ -336,6 +334,5 @@ class Pager
 
 ##########################################################################################
 }
-Pager::init();
 
 ?>

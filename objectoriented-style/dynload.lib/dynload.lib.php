@@ -9,14 +9,15 @@ class DynLoad
 
     public function init()
     {
-        require("dynload.lib.config.php");
-
         self::$libDirectory = ltrim(str_replace('\\','',str_replace(getcwd(),'',__DIR__)),'/');
-
-        self::$sqlConnectionLink = mysqli_connect($dynloadConfigDatabaseHost,$dynloadConfigDatabaseUser,$dynloadConfigDatabasePass,$dynloadConfigDatabaseName) OR die("<br><br><b>Error in dynload.lib.php :</b> Could not connect to Database (Code 1)<br><br>");
     }
 
 //########################################################################################
+
+    public static function SetSQLLink($link)
+    {
+        self::$sqlConnectionLink = $link;
+    }
 
     public static function Link()
     {
