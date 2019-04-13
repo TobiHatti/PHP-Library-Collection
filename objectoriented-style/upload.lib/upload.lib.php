@@ -208,7 +208,8 @@ class FileUploader
                         $dupFilename = $fileName;
                         while(file_exists($dupFilename))
                         {
-                            $dupFilename = $this->fileUploadDirectory.$this->fileCustomName.'('.$i++.').'.$fileExtension;
+                            if($this->fileCustomName != "") $dupFilename = $this->fileUploadDirectory.$this->fileCustomName.'('.$i++.').'.$fileExtension;
+                            else $dupFilename = $this->fileUploadDirectory.str_replace('.'.$fileExtension,'',$name).'('.$i++.').'.$fileExtension;
                         }
                         $fileName = $dupFilename;
                     }
