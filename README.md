@@ -1,4 +1,12 @@
 # PHP Library Collection
+
+![GitHub](https://img.shields.io/github/license/TobiHatti/PHP-Library-Collection)
+[![GitHub Release Date](https://img.shields.io/github/release-date/TobiHatti/PHP-Library-Collection)](https://github.com/TobiHatti/PHP-Library-Collection/releases)
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/TobiHatti/PHP-Library-Collection?include_prereleases)](https://github.com/TobiHatti/PHP-Library-Collection/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/TobiHatti/PHP-Library-Collection)](https://github.com/TobiHatti/PHP-Library-Collection/commits/master)
+[![GitHub issues](https://img.shields.io/github/issues-raw/TobiHatti/PHP-Library-Collection)](https://github.com/TobiHatti/PHP-Library-Collection/issues)
+[![GitHub language count](https://img.shields.io/github/languages/count/TobiHatti/PHP-Library-Collection)](https://github.com/TobiHatti/PHP-Library-Collection)
+
 A collection of usefull PHP-Libraries for web-development<br />
 For detailed description see the README.md in each libraries folder.
 A brief summary of all classes and methods is given below.
