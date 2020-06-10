@@ -9,7 +9,7 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/TobiHatti/PHP-Library-Collection)](https://github.com/TobiHatti/PHP-Library-Collection/issues)
 [![GitHub language count](https://img.shields.io/github/languages/count/TobiHatti/PHP-Library-Collection)](https://github.com/TobiHatti/PHP-Library-Collection)
 
-![image](https://endev.at/content/projects/PHP-Library-Collection/PHPLibraryCollection_Banner_1080.png)
+![image](https://endev.at/content/projects/PHP-Library-Collection/PHPLibraryCollection_Banner_300.png)
 
 A collection of usefull PHP-Libraries for web-development<br />
 For detailed description see the README.md in each libraries folder.
