@@ -1,6 +1,6 @@
 
 
-# MySQL.lib [DEPRECATED! USE [THIS](https://github.com/TobiHatti/SQL-Wrapper-Classes/tree/master/Finished/PHP) LIBRARY INSTEAD!]
+# MySQL.lib [DEPRECATED! USE [THIS](https://github.com/TobiHatti/WrapSQL/tree/master/PHP) LIBRARY INSTEAD!]
 
 A simple but widely useable MySQL library with all necessary methods for use in web-development. This class supports parameterised SQL-statements
 
